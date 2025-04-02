@@ -1,70 +1,89 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
+    color: #333;
 }
 header {
-    background: #4CAF50;
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
     color: white;
-    padding: 15px;
+    padding: 20px;
+    font-size: 1.5em;
+    text-transform: uppercase;
 }
 nav ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 nav ul li {
-    display: inline;
-    margin: 0 15px;
+    margin: 0;
 }
 nav a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #ffcc00;
 }
 main {
-    padding: 20px;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
 }
 .explore-button {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 25px;
+    font-size: 18px;
     color: white;
-    background-color: #4CAF50;
+    background-color: #6a11cb;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
     margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .explore-button:hover {
-    background-color: #45a049;
+    background-color: #2575fc;
+    transform: scale(1.05);
 }
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 30px;
 }
 .gallery img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
+    border-radius: 15px;
 }
 
 .gallery-item img {
     width: 100%;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1); 
+    transform: scale(1.1);
+    filter: brightness(0.8);
 }
 
 .gallery-item .caption {
@@ -72,46 +91,50 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     text-align: center;
-    padding: 10px;
-    font-size: 14px;
+    padding: 15px;
+    font-size: 16px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
 }
 
 .gallery-item:hover .caption {
-    opacity: 1; 
+    opacity: 1;
 }
 
 .contact-form {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .contact-form input, .contact-form textarea {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 .contact-form button {
-    background: #4CAF50;
+    background: #6a11cb;
     color: white;
-    padding: 10px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .contact-form button:hover {
-    background: #45a049;
+    background: #2575fc;
+    transform: scale(1.05);
 }
 .modal {
     display: none;
@@ -120,26 +143,29 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
 }
 .modal-content {
     background: white;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 30px;
+    border-radius: 10px;
     text-align: center;
     position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .close-button {
-    background: #d9534f;
+    background: #ff4d4d;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 50px;
     cursor: pointer;
-    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .close-button:hover {
-    background: #c9302c;
+    background: #e60000;
+    transform: scale(1.05);
 }
