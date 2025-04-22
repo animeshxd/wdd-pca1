@@ -1,31 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nature & Wildlife</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 </head>
+
 <body>
-    <header>
-        <h1>Nature & Wildlife</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="contact.html">Get in Touch</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <h2>Welcome to the Beauty of Nature</h2>
-        <p>Explore the wonders of wildlife and natural landscapes.</p>
-        <a href="gallery.html" class="explore-button">Explore</a>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 Nature & Wildlife</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Nature & Wildlife</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" a href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="bg-light py-5 text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Welcome to the Beauty of Nature</h1>
+            <p class="lead mb-4">Explore the wonders of wildlife and breathtaking natural landscapes. Discover rare
+                species, stunning scenery, and the magic of the wild.</p>
+            <a href="gallery.html" class="btn btn-success btn-lg px-4">Explore Gallery</a>
+        </div>
+    </section>
+
+
+    <section class="container py-5">
+        <div id="featured-animals" class="row g-4"></div>
+    </section>
+
+
+    <section id="about" class="bg-success text-white py-5">
+        <div class="container">
+            <h2 class="mb-3">About Us</h2>
+            <p>We are passionate about sharing the beauty and diversity of the natural world. Our mission is to inspire
+                appreciation and conservation of wildlife through stunning imagery and engaging stories.</p>
+        </div>
+    </section>
+
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Nature & Wildlife. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <script src="animals.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!Array.isArray(animals)) return;
+            const shuffled = animals.slice().sort(() => 0.5 - Math.random());
+            const featured = shuffled.slice(0, 3);
+            const container = document.getElementById('featured-animals');
+            container.innerHTML = '';
+            featured.forEach((animal, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-12 col-md-6 col-lg-4';
+                col.innerHTML = `
+            <a href="info.html?id=${index}" class="text-decoration-none text-dark">
+              <div class="card h-100 border-0 shadow-sm">
+                <img src="${animal.image}" class="card-img-top" alt="${animal.name}" style="height:210px;object-fit:cover;">
+                <div class="card-body">
+                  <h5 class="card-title mb-1">${animal.name}</h5>
+                  <div class="text-muted mb-2"><em>${animal.scientificName}</em></div>
+                  <p class="card-text mb-2">${animal.description}</p>
+                  <div class="small text-secondary">Habitat: ${animal.habitat}</div>
+                </div>
+              </div>
+            </a>
+          `;
+                container.appendChild(col);
+            });
+        });
+    </script>
 </body>
+
 </html>

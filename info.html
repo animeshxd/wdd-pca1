@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Nature & Wildlife</title>
-
+    <title>Animal Info - Nature & Wildlife</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="animals.js"></script>
@@ -25,7 +24,7 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="gallery.html">Gallery</a>
+                        <a class="nav-link" href="gallery.html">Gallery</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -39,8 +38,7 @@
     </nav>
 
     <main class="container py-5">
-        <h2 class="mb-4 text-center">Explore the Wonders of Nature</h2>
-        <div id="gallery-row" class="row g-4"></div>
+        <div id="animal-info" class="row justify-content-center"></div>
     </main>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
@@ -49,31 +47,33 @@
         </div>
     </footer>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
     <script>
-        const galleryRow = document.getElementById('gallery-row');
-        galleryRow.innerHTML = '';
-        animals.forEach((animal, index) => {
-            const col = document.createElement('div');
-            col.className = 'col-12 col-md-6 col-lg-4';
-            col.innerHTML = `
-            <a href="info.html?id=${index}" class="text-decoration-none text-dark">
-                <div class="card h-100 border-0 shadow-sm">
-                  <img src="${animal.image}" class="card-img-top" alt="${animal.name}" style="height:210px;object-fit:cover;">
-                  <div class="card-body">
-                <h5 class="card-title mb-1">${animal.name}</h5>
-                <div class="text-muted mb-2"><em>${animal.scientificName}</em></div>
-                <p class="card-text mb-2">${animal.description}</p>
-                <div class="small text-secondary mb-2">Habitat: ${animal.habitat}</div>
-                  </div>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        const animalId = parseInt(getQueryParam('id'), 10);
+        const infoDiv = document.getElementById('animal-info');
+        if (!isNaN(animalId) && animals[animalId]) {
+            const animal = animals[animalId];
+            infoDiv.innerHTML = `
+                <div class="col-12 col-lg-8 mx-auto">
+                    <div class="bg-light rounded-4 shadow p-3 p-md-4 mb-3 text-center" style="max-width:600px;margin:auto;">
+                        <img src="${animal.image}" class="img-fluid rounded-4 shadow-sm w-100 mb-2" style="max-height:260px;object-fit:cover;" alt="${animal.name}">
+                        <h2 class="fw-bold mb-1" style="font-size:1.5rem;">${animal.name}</h2>
+                        <div class="fs-6 text-muted mb-2"><em>${animal.scientificName}</em></div>
+                        <p class="mb-2" style="font-size:0.95rem;">${animal.description}</p>
+                        <div class="mb-3"><span class="badge bg-secondary" style="font-size:0.85rem;">Habitat</span> <span class="ms-2" style="font-size:1rem;">${animal.habitat}</span></div>
+                        <a href="gallery.html" class="btn btn-success btn-sm">Back to Gallery</a>
+                    </div>
                 </div>
-            </a>
             `;
-            galleryRow.appendChild(col);
-        });
+        } else {
+            infoDiv.innerHTML = '<div class="col-12 text-center"><div class="alert alert-danger">Animal not found.</div></div>';
+        }
     </script>
 </body>
 
